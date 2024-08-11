@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "twonumbersum_lib",
+    srcs = ["twonumbersum.go"],
+    importpath = "github.com/deep-space-cartel/algoexpert.io/v2/twonumbersum",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "twonumbersum_test",
+    srcs = ["twonumbersum_test.go"],
+    embed = [":twonumbersum_lib"],
+    deps = ["@com_github_stretchr_testify//require"],
+)

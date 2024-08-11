@@ -8,6 +8,10 @@
 		"ghcr.io/devcontainers/features/github-cli:1": {
 			"installDirectlyFromGitHubRelease": true,
 			"version": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/npm-package:1": {
+			"package": "@bazel/bazelisk",
+			"version": "1.19.0"
 		}
 	},
 
@@ -21,6 +25,13 @@
 	// "postCreateCommand": "go version",
 
 	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"BazelBuild.vscode-bazel"
+			]
+		}
+	},
 
 	// Configure tool-specific properties.
 	// "customizations": {},

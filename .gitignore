@@ -19,3 +19,12 @@
 
 # Go workspace file
 go.work
+
+# Project Specific
+algoexpert.io
+
+# Bazel
+bazel-algoexpert.io
+bazel-bin
+bazel-out
+bazel-testlogs

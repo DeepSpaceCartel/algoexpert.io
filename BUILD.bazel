@@ -1,0 +1,33 @@
+load("@bazel_gazelle//:def.bzl", "gazelle", "gazelle_test")
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+gazelle_test(
+    name = "gazelle_test",
+    workspace = "//:BUILD.bazel",  # a file in the workspace root, where the gazelle will be run
+)
+
+# gazelle:prefix github.com/deep-space-cartel/algoexpert.io/v2
+gazelle(name = "gazelle")
+
+gazelle(
+    name = "gazelle-update-repos",
+    args = [
+        "-from_file=go.mod",
+        "-to_macro=deps.bzl%go_dependencies",
+        "-prune",
+    ],
+    command = "update-repos",
+)
+
+go_library(
+    name = "algoexpert_io_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/deep-space-cartel/algoexpert.io/v2",
+    visibility = ["//visibility:private"],
+)
+
+go_binary(
+    name = "v2",
+    embed = [":algoexpert_io_lib"],
+    visibility = ["//visibility:public"],
+)
